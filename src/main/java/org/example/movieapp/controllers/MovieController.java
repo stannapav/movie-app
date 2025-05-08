@@ -29,7 +29,7 @@ public class MovieController {
     }
 
     @GetMapping("/genre/{genreId}")
-    public ResponseEntity<Page<MovieDTO>> getAllMovies(
+    public ResponseEntity<Page<MovieDTO>> getAllMoviesByGenre(
             @PathVariable Integer genreId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size
