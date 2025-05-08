@@ -46,20 +46,13 @@ public class Movie {
 
     private int adult;
     
-    //One-to-Many
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cast> castList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Crew> crewList = new ArrayList<>();
-    
     //Many-to-Many
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies", fetch = FetchType.LAZY)
     private List<Genre> genres = new ArrayList<>();
     
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies", fetch = FetchType.LAZY)
     private List<ProductionCountry> productionCountries = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies", fetch = FetchType.LAZY)
     private  List<ProductionCompany> productionCompanies = new ArrayList<>();
 }

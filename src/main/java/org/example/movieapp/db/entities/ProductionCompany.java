@@ -19,7 +19,7 @@ public class ProductionCompany {
     private String name;
 
     //Many-to-Many
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "movie_production_companies",
         joinColumns = @JoinColumn(name = "company_id"),

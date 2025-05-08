@@ -20,7 +20,7 @@ public class ProductionCountry {
     private String name;
 
     //Many-to-Many
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "movie_production_countries",
         joinColumns = @JoinColumn(name = "country_iso", columnDefinition = "CHAR(2)"),
