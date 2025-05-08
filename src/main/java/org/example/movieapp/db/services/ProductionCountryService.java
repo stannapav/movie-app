@@ -1,16 +1,31 @@
 package org.example.movieapp.db.services;
 
-import org.example.movieapp.db.repositories.MovieRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.example.movieapp.db.dto.ProductionCountryDTO;
+import org.example.movieapp.db.entities.ProductionCountry;
+import org.example.movieapp.db.mapper.ProductionCountryMapper;
 import org.example.movieapp.db.repositories.ProductionCountryRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductionCountryService {
     final ProductionCountryRepository countryRepository;
-    final MovieRepository movieRepository;
+    final ProductionCountryMapper countryMapper;
     
-    public ProductionCountryService(ProductionCountryRepository countryRepository, MovieRepository movieRepository) {
+    public ProductionCountryService(ProductionCountryRepository countryRepository, ProductionCountryMapper countryMapper) {
         this.countryRepository = countryRepository;
-        this.movieRepository = movieRepository;
+        this.countryMapper = countryMapper;
+    }
+
+    public ProductionCountryDTO getCountryDTOById(String code) {
+        ProductionCountry country = countryRepository.findByCode(code)
+                .orElseThrow(() -> new EntityNotFoundException("Country not found"));
+        return countryMapper.toDTO(country);
+    }
+    
+    public List<ProductionCountryDTO> getAllCountries(){
+        return countryRepository.findAll().stream().map(countryMapper::toDTO).toList();
     }
 }
