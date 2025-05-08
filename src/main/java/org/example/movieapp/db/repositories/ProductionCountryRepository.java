@@ -9,8 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProductionCountryRepository extends JpaRepository<ProductionCountry, Integer> {
-    List<ProductionCountry> findAllByCode(String code);
-
     Optional<ProductionCountry> findByCode(String code);
 
+    List<ProductionCountry> findByNameIn(List<String> name);
 }

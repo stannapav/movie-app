@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class MovieMapper {
-
     private final GenreRepository genreRepository;
     private final ProductionCompanyRepository productionCompanyRepository;
     private final ProductionCountryRepository productionCountryRepository;
@@ -29,9 +28,9 @@ public class MovieMapper {
         dto.setVoteCount(movie.getVoteCount());
         dto.setAdult(movie.getAdult());
 
-        dto.setGenreIds(movie.getGenres().stream().map(Genre::getId).collect(Collectors.toList()));
-        dto.setProductionCompanyIds(movie.getProductionCompanies().stream().map(ProductionCompany::getId).collect(Collectors.toList()));
-        dto.setProductionCountryCodes(movie.getProductionCountries().stream().map(ProductionCountry::getCode).collect(Collectors.toList()));
+        dto.setGenreNames(movie.getGenres().stream().map(Genre::getName).collect(Collectors.toList()));
+        dto.setProductionCompanyNames(movie.getProductionCompanies().stream().map(ProductionCompany::getName).collect(Collectors.toList()));
+        dto.setProductionCountryNames(movie.getProductionCountries().stream().map(ProductionCountry::getName).collect(Collectors.toList()));
 
         return dto;
     }
@@ -50,9 +49,9 @@ public class MovieMapper {
         movie.setVoteCount(dto.getVoteCount());
         movie.setAdult(dto.getAdult());
 
-        movie.setGenres(genreRepository.findAllById(dto.getGenreIds()));
-        movie.setProductionCompanies(productionCompanyRepository.findAllById(dto.getProductionCompanyIds()));
-        movie.setProductionCountries(productionCountryRepository.findAllByCode(String.valueOf(dto.getProductionCountryCodes())));
+        movie.setGenres(genreRepository.findByNameIn(dto.getGenreNames()));
+        movie.setProductionCompanies(productionCompanyRepository.findByNameIn(dto.getProductionCompanyNames()));
+        movie.setProductionCountries(productionCountryRepository.findByNameIn(dto.getProductionCountryNames()));
 
         return movie;
     }

@@ -21,7 +21,7 @@ public class MovieDTO {
     private int voteCount;
     private int adult;
     
-    private List<Integer> genreIds;
-    private List<String> productionCountryCodes;
-    private List<Integer> productionCompanyIds;
+    private List<String> genreNames;
+    private List<String> productionCountryNames;
+    private List<String> productionCompanyNames;
 }

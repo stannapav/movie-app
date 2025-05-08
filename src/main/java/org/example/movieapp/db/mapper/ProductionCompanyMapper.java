@@ -2,17 +2,12 @@ package org.example.movieapp.db.mapper;
 
 import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.ProductionCompanyDTO;
-import org.example.movieapp.db.entities.Movie;
 import org.example.movieapp.db.entities.ProductionCompany;
-import org.example.movieapp.db.repositories.MovieRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class ProductionCompanyMapper {
-
-    private final MovieRepository movieRepository;
-
     public ProductionCompanyDTO toDTO(ProductionCompany company) {
         ProductionCompanyDTO dto = new ProductionCompanyDTO();
         dto.setId(company.getId());
