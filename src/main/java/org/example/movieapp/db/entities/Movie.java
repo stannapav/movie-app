@@ -43,9 +43,11 @@ public class Movie {
 
     @Column(name = "vote_count")
     private int voteCount;
-
-    private int adult;
     
+    //One-to-Many
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserMovie> userMovies = new ArrayList<>();
+
     //Many-to-Many
     @ManyToMany(mappedBy = "movies", fetch = FetchType.LAZY)
     private List<Genre> genres = new ArrayList<>();

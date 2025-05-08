@@ -19,7 +19,6 @@ public class MovieDTO {
     private float runtime;
     private float voteAverage;
     private int voteCount;
-    private int adult;
     
     private List<String> genreNames;
     private List<String> productionCountryNames;
