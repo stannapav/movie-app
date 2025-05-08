@@ -3,7 +3,7 @@ package org.example.movieapp.db.services;
 import jakarta.persistence.EntityNotFoundException;
 import org.example.movieapp.db.dto.GenreDTO;
 import org.example.movieapp.db.entities.Genre;
-import org.example.movieapp.db.mapper.GenreMapper;
+import org.example.movieapp.mappers.GenreMapper;
 import org.example.movieapp.db.repositories.GenreRepository;
 import org.springframework.stereotype.Service;
 

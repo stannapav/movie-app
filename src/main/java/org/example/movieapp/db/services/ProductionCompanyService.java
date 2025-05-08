@@ -3,7 +3,7 @@ package org.example.movieapp.db.services;
 import jakarta.persistence.EntityNotFoundException;
 import org.example.movieapp.db.dto.ProductionCompanyDTO;
 import org.example.movieapp.db.entities.ProductionCompany;
-import org.example.movieapp.db.mapper.ProductionCompanyMapper;
+import org.example.movieapp.mappers.ProductionCompanyMapper;
 import org.example.movieapp.db.repositories.ProductionCompanyRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

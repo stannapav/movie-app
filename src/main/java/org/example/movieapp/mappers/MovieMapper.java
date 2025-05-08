@@ -1,4 +1,4 @@
-package org.example.movieapp.db.mapper;
+package org.example.movieapp.mappers;
 
 import org.example.movieapp.db.dto.MovieDTO;
 import org.example.movieapp.db.entities.*;
@@ -26,7 +26,6 @@ public class MovieMapper {
         dto.setRuntime(movie.getRuntime());
         dto.setVoteAverage(movie.getVoteAverage());
         dto.setVoteCount(movie.getVoteCount());
-        dto.setAdult(movie.getAdult());
 
         dto.setGenreNames(movie.getGenres().stream().map(Genre::getName).collect(Collectors.toList()));
         dto.setProductionCompanyNames(movie.getProductionCompanies().stream().map(ProductionCompany::getName).collect(Collectors.toList()));
@@ -47,7 +46,6 @@ public class MovieMapper {
         movie.setRuntime(dto.getRuntime());
         movie.setVoteAverage(dto.getVoteAverage());
         movie.setVoteCount(dto.getVoteCount());
-        movie.setAdult(dto.getAdult());
 
         movie.setGenres(genreRepository.findByNameIn(dto.getGenreNames()));
         movie.setProductionCompanies(productionCompanyRepository.findByNameIn(dto.getProductionCompanyNames()));

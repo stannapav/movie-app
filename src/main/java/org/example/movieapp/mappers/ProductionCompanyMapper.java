@@ -1,4 +1,4 @@
-package org.example.movieapp.db.mapper;
+package org.example.movieapp.mappers;
 
 import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.ProductionCompanyDTO;
