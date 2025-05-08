@@ -20,9 +20,7 @@ public class MovieDTO {
     private float voteAverage;
     private int voteCount;
     private int adult;
-
-    private List<Integer> castIds;
-    private List<Integer> crewIds;
+    
     private List<Integer> genreIds;
     private List<String> productionCountryCodes;
     private List<Integer> productionCompanyIds;
