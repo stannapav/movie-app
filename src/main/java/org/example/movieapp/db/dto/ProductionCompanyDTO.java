@@ -10,5 +10,4 @@ import java.util.List;
 public class ProductionCompanyDTO {
     private Integer id;
     private String name;
-    private List<Integer> movieIds;
 }

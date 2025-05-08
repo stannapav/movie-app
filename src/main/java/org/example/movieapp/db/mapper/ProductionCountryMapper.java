@@ -17,7 +17,6 @@ public class ProductionCountryMapper {
         ProductionCountryDTO dto = new ProductionCountryDTO();
         dto.setCode(country.getCode());
         dto.setName(country.getName());
-        dto.setMovieIds(country.getMovies().stream().map(Movie::getId).toList());
         return dto;
     }
 
@@ -25,7 +24,6 @@ public class ProductionCountryMapper {
         ProductionCountry country = new ProductionCountry();
         country.setCode(dto.getCode());
         country.setName(dto.getName());
-        country.setMovies(movieRepository.findAllById(dto.getMovieIds()));
         return country;
     }
 }

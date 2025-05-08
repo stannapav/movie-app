@@ -10,5 +10,4 @@ import java.util.List;
 public class GenreDTO {
     private Integer id;
     private String name;
-    private List<Integer> movieIds;
 }

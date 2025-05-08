@@ -17,7 +17,6 @@ public class ProductionCompanyMapper {
         ProductionCompanyDTO dto = new ProductionCompanyDTO();
         dto.setId(company.getId());
         dto.setName(company.getName());
-        dto.setMovieIds(company.getMovies().stream().map(Movie::getId).toList());
         return dto;
     }
 
@@ -25,7 +24,6 @@ public class ProductionCompanyMapper {
         ProductionCompany company = new ProductionCompany();
         company.setId(dto.getId());
         company.setName(dto.getName());
-        company.setMovies(movieRepository.findAllById(dto.getMovieIds()));
         return company;
     }
 }

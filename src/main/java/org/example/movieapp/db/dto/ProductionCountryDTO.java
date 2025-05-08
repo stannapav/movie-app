@@ -10,5 +10,4 @@ import java.util.List;
 public class ProductionCountryDTO {
     private String Code;
     private String name;
-    private List<Integer> movieIds;
 }

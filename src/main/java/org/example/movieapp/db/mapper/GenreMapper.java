@@ -17,7 +17,6 @@ public class GenreMapper {
         GenreDTO dto = new GenreDTO();
         dto.setId(genre.getId());
         dto.setName(genre.getName());
-        dto.setMovieIds(genre.getMovies().stream().map(Movie::getId).toList());
         return dto;
     }
 
@@ -25,7 +24,6 @@ public class GenreMapper {
         Genre genre = new Genre();
         genre.setId(dto.getId());
         genre.setName(dto.getName());
-        genre.setMovies(movieRepository.findAllById(dto.getMovieIds()));
         return genre;
     }
 }
