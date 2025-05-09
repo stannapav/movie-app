@@ -23,6 +23,12 @@ public class MovieService {
         return movieMapper.toDTO(movie);
     }
 
+    public MovieDTO getMovieByTitle(String title) {
+        Movie movie = movieRepository.findByTitle(title)
+                .orElseThrow(() -> new EntityNotFoundException("Movie not found"));
+        return movieMapper.toDTO(movie);
+    }
+
     public Page<MovieDTO> getAllMovies(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return movieRepository.findAll(pageable)

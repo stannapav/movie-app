@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/movies")
@@ -15,9 +16,18 @@ public class MovieController {
     final MovieService movieService;
     
     @GetMapping("/{movieId}")
-    public ResponseEntity<MovieDTO> getMovie(@PathVariable Integer movieId){
+    public ResponseEntity<MovieDTO> getMovieById(@PathVariable Integer movieId){
         try {
             return ResponseEntity.ok(movieService.getMovieById(movieId));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/title")
+    public ResponseEntity<MovieDTO> getMovieByTitle(@RequestParam String title){
+        try {
+            return ResponseEntity.ok(movieService.getMovieByTitle(title));
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
