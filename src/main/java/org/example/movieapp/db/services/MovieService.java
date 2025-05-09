@@ -1,6 +1,7 @@
 package org.example.movieapp.db.services;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.MovieDTO;
 import org.example.movieapp.db.entities.Movie;
 import org.example.movieapp.mappers.MovieMapper;
@@ -11,14 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class MovieService {
-    final MovieRepository movieRepository;
-    final MovieMapper movieMapper;
-
-    public MovieService(MovieRepository movieRepository, MovieMapper movieMapper) {
-        this.movieRepository = movieRepository;
-        this.movieMapper = movieMapper;
-    }
+    private final MovieRepository movieRepository;
+    private final MovieMapper movieMapper;
 
     public MovieDTO getMovieById(Integer id) {
         Movie movie = movieRepository.findById(id)

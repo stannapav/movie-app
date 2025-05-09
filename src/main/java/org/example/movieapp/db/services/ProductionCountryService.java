@@ -1,6 +1,7 @@
 package org.example.movieapp.db.services;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.ProductionCountryDTO;
 import org.example.movieapp.db.entities.ProductionCountry;
 import org.example.movieapp.mappers.ProductionCountryMapper;
@@ -10,14 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductionCountryService {
-    final ProductionCountryRepository countryRepository;
-    final ProductionCountryMapper countryMapper;
-    
-    public ProductionCountryService(ProductionCountryRepository countryRepository, ProductionCountryMapper countryMapper) {
-        this.countryRepository = countryRepository;
-        this.countryMapper = countryMapper;
-    }
+    private final ProductionCountryRepository countryRepository;
+    private final ProductionCountryMapper countryMapper;
 
     public ProductionCountryDTO getCountryDTOById(String code) {
         ProductionCountry country = countryRepository.findByCode(code)
