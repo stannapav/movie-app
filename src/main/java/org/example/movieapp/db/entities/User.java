@@ -1,5 +1,6 @@
 package org.example.movieapp.db.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
@@ -34,6 +35,7 @@ public class User {
     private String password;
 
     //One-to-Many
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserMovie> userMovies = new ArrayList<>();
 }
