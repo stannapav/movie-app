@@ -1,5 +1,7 @@
 package org.example.movieapp.controllers;
 
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.MovieDTO;
 import org.example.movieapp.db.services.MovieService;
 import org.springframework.data.domain.Page;
@@ -7,17 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/movies")
 public class MovieController {
     final MovieService movieService;
-
-    public MovieController(MovieService movieService) {
-        this.movieService = movieService;
-    }
     
     @GetMapping("/{movieId}")
     public ResponseEntity<MovieDTO> getMovie(@PathVariable Integer movieId){
-        return ResponseEntity.ok(movieService.getMovieById(movieId));
+        try {
+            return ResponseEntity.ok(movieService.getMovieById(movieId));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping
