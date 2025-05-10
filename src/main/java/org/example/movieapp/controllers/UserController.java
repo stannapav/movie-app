@@ -3,7 +3,7 @@ package org.example.movieapp.controllers;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.UserDTO;
-import org.example.movieapp.db.entities.User;
+import org.example.movieapp.db.entities.UserModel;
 import org.example.movieapp.db.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,20 +41,29 @@ public class UserController {
         return  ResponseEntity.ok(userService.getAllUsers());
     }
     
-    @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody User user){
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody UserModel user){
         try {
-            userService.createUser(user);
+            userService.register(user);
             return ResponseEntity.status(HttpStatus.CREATED).body("User created");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO> login(@RequestParam String email, @RequestParam String password){
+        try {
+            return ResponseEntity.ok(userService.login(email, password));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @PutMapping("/{userId}")
     public ResponseEntity<String> updateUser(
             @PathVariable Integer userId, 
-            @RequestBody User user
+            @RequestBody UserModel user
     ) {
         try {
             userService.updateUser(userId, user);

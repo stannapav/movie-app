@@ -3,7 +3,7 @@ package org.example.movieapp.mappers;
 import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.MovieDTO;
 import org.example.movieapp.db.dto.UserDTO;
-import org.example.movieapp.db.entities.User;
+import org.example.movieapp.db.entities.UserModel;
 import org.example.movieapp.db.enums.WatchStatus;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class UserMapper {
     private final MovieMapper movieMapper;
 
-    public UserDTO toDTO(User user) {
+    public UserDTO toDTO(UserModel user) {
         List<MovieDTO> watched = user.getUserMovies().stream()
                 .filter(um -> um.getWatchStatus() == WatchStatus.WATCHED)
                 .map(um -> movieMapper.toDTO(um.getMovie()))

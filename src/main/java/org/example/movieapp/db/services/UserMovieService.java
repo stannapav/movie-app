@@ -5,7 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.MovieDTO;
 import org.example.movieapp.db.entities.Movie;
-import org.example.movieapp.db.entities.User;
+import org.example.movieapp.db.entities.UserModel;
 import org.example.movieapp.db.entities.UserMovie;
 import org.example.movieapp.db.enums.WatchStatus;
 import org.example.movieapp.db.repositories.MovieRepository;
@@ -27,7 +27,7 @@ public class UserMovieService {
 
     @Transactional
     public void saveWatchStatus(Integer userId, Integer movieId, WatchStatus status) {
-        User user = userRepository.findById(userId)
+        UserModel user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
         
         Movie movie = movieRepository.findById(movieId)

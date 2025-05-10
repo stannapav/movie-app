@@ -1,12 +1,14 @@
 package org.example.movieapp.db.repositories;
 
-import org.example.movieapp.db.entities.User;
+import org.example.movieapp.db.entities.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
-    Optional<User> findByEmail(String email);
+public interface UserRepository extends JpaRepository<UserModel, Integer> {
+    Optional<UserModel> findByEmail(String email);
+
+    boolean existsByEmail(String email);
 }

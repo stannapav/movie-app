@@ -20,7 +20,7 @@ public class UserMovie {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserModel user;
 
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false)

@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
+public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -31,7 +31,6 @@ public class User {
     @Column(length=20)
     private String name;
     
-    @Column(length=20)
     private String password;
 
     //One-to-Many
