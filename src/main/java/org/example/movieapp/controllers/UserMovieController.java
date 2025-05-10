@@ -3,7 +3,6 @@ package org.example.movieapp.controllers;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.MovieDTO;
-import org.example.movieapp.db.entities.UserMovie;
 import org.example.movieapp.db.enums.WatchStatus;
 import org.example.movieapp.db.services.UserMovieService;
 import org.springframework.http.ResponseEntity;

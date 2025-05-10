@@ -47,6 +47,19 @@ public class UserMovieService {
         userMovie.setWatchStatus(status);
         userMovieRepository.save(userMovie);
     }
+    
+    public WatchStatus getWatchStatus(Integer userId, Integer movieId){
+        userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        movieRepository.findById(movieId)
+                .orElseThrow(() -> new EntityNotFoundException("Movie not found"));
+
+        Optional<UserMovie> userMovie = userMovieRepository.findByUser_IdAndMovie_Id(userId, movieId);
+
+        return userMovie.map(UserMovie::getWatchStatus).orElse(null);
+
+    }
 
     public List<MovieDTO> getUserMoviesByStatus(Integer userId, WatchStatus status) {
         return userMovieRepository.findByUser_IdAndWatchStatus(userId, status)
