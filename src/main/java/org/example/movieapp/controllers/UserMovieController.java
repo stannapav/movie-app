@@ -3,6 +3,7 @@ package org.example.movieapp.controllers;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.example.movieapp.db.dto.MovieDTO;
+import org.example.movieapp.db.entities.UserMovie;
 import org.example.movieapp.db.enums.WatchStatus;
 import org.example.movieapp.db.services.UserMovieService;
 import org.springframework.http.ResponseEntity;
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/api/user-movies")
 @RequiredArgsConstructor
 public class UserMovieController {
@@ -26,6 +27,18 @@ public class UserMovieController {
         try {
             userMovieService.saveWatchStatus(userId, movieId, status);
             return ResponseEntity.ok("Status saved");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    @GetMapping
+    public ResponseEntity<WatchStatus> getUserMovie(
+            @RequestParam Integer userId,
+            @RequestParam Integer movieId
+    ) {
+        try {
+            return ResponseEntity.ok(userMovieService.getWatchStatus(userId, movieId));
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
